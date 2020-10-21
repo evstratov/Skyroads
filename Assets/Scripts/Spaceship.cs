@@ -7,6 +7,7 @@ public class Spaceship : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private Animator _animator;
+    private GameManager _gameManager;
 
     // направление движения корабля
     private Vector3 _moveDirection;
@@ -18,12 +19,13 @@ public class Spaceship : MonoBehaviour
     }
     private void Start()
     {
+        _gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         _moveDirection = Vector3.zero;
     }
 
     private void FixedUpdate()
     {
-        _rigidbody.velocity = (_moveDirection * FloorSpawner.speed);
+        _rigidbody.velocity = (_moveDirection * _gameManager.moveSpeed);
     }
 
     private void Update()
@@ -85,7 +87,7 @@ public class Spaceship : MonoBehaviour
 
     private void GameOver()
     {
-        FloorSpawner.speed = 0;
+        _gameManager.GameOver();
         Destroy(gameObject);
     }
 }
