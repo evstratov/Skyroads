@@ -6,7 +6,6 @@ using UnityEngine.Analytics;
 public class Spaceship : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-    private Animator _animator;
     private GameManager _gameManager;
 
     // направление движения корабля
@@ -15,7 +14,6 @@ public class Spaceship : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -38,8 +36,7 @@ public class Spaceship : MonoBehaviour
             if (CanMove(newDirection))
             {
                 _moveDirection = newDirection;
-                _animator.SetBool("Left", true);
-                _animator.SetBool("Right", false);
+                StartCoroutine(LeftIncline());
             }
         }
         else if (Input.GetKeyDown(KeyCode.D))
@@ -48,16 +45,14 @@ public class Spaceship : MonoBehaviour
 
             if (CanMove(newDirection))
             {
-                _animator.SetBool("Right", true);
-                _animator.SetBool("Left", false);
+                StartCoroutine(RightIncline());
                 _moveDirection = newDirection;
             }
         }
         else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || !CanMove(_moveDirection))
         {
+            StartCoroutine(IdleState());
             _moveDirection = Vector3.zero;
-            _animator.SetBool("Left", false);
-           _animator.SetBool("Right", false);
         }
         #endregion
     }
@@ -89,5 +84,40 @@ public class Spaceship : MonoBehaviour
     {
         _gameManager.GameOver();
         Destroy(gameObject);
+    }
+
+    private IEnumerator RightIncline()
+    {
+        Quaternion angleRotation = Quaternion.Euler(0, 0, -20);
+        float t = 0;
+        while (t <= 1)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, angleRotation, t);
+            t += 0.1f;
+            yield return null;
+        }
+    }
+    private IEnumerator LeftIncline()
+    {
+        Quaternion angleRotation = Quaternion.Euler(0, 0, 20);
+        float t = 0;
+        while (t <= 1)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, angleRotation, t);
+            t += 0.1f;
+            yield return null;
+        }
+    }
+
+    private IEnumerator IdleState()
+    {
+        Quaternion angleRotation = Quaternion.Euler(0, 0, 0);
+        float t = 0;
+        while(t <= 1)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, angleRotation, t);
+            t += 0.1f;
+            yield return null;
+        }
     }
 }

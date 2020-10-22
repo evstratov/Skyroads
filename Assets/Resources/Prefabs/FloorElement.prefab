@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7542674616428432519}
   - component: {fileID: 5455353628586584431}
   m_Layer: 0
-  m_Name: FloorPlanel
+  m_Name: FloorElement
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,6 +60,9 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 54d1a7fe1fc800248b1abe5f58ca1dbe, type: 2}
+  - {fileID: 2100000, guid: 4579b98e97a122941a78823f6789a409, type: 2}
+  - {fileID: 2100000, guid: 6bcac25f34044b246afe1bf68ba77072, type: 2}
+  - {fileID: 2100000, guid: f5ad21df768468340a09b3a007a445ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b14976be1d2b234a96f5e68ecd579b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!65 &5455353628586584431
 BoxCollider:
   m_ObjectHideFlags: 0

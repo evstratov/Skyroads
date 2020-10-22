@@ -885,7 +885,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1451,7 +1451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4319d9e04010d3e4e872da9c074a632f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -234
+      value: -115.1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4319d9e04010d3e4e872da9c074a632f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1459,7 +1459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4319d9e04010d3e4e872da9c074a632f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 866
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4319d9e04010d3e4e872da9c074a632f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1513,25 +1513,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1974864895}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1956575920
-Animator:
-  serializedVersion: 3
+--- !u!65 &1956575921
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956575919}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 42fdbb839cf677b4d8dbf173fd09215d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6520687, y: 0.53681076, z: 2.9777734}
+  m_Center: {x: -0.004130304, y: 0.03562486, z: 0.26851964}
 --- !u!4 &1956575923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: e7674e9ed06151745829c8f47cc06893,
@@ -1566,20 +1560,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1956575926
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956575919}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.7515048
-  m_Height: 2.7557359
-  m_Direction: 2
-  m_Center: {x: 0.041239142, y: -0.0785054, z: 0.126755}
 --- !u!1 &1959620361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1709,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2035379913}
   - component: {fileID: 2035379912}
-  - component: {fileID: 2035379914}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -1749,6 +1728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74cd46764e1392b4c9961dff53b2676b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 2099236635}
 --- !u!4 &2035379913
 Transform:
   m_ObjectHideFlags: 0
@@ -1763,99 +1743,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2035379914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035379911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fce6aad4eb4fa5941bafa45e42da99c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _asteroidTileSize: 0
-  _viewDistance: 0
-  _spawnAsteroidZCoord: 0
-  _asteroidObject: {fileID: 0}
-  _lastAsteroidElement: {fileID: 0}
 --- !u!1 &2099236634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,12 +1772,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7669285506d291541889d2ac5ffca9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
   pressAnyKeyText: {fileID: 1459989455}
   gameOverPanel: {fileID: 117038487}
   scoreText: {fileID: 811680256}
   asteroidCountText: {fileID: 1708346368}
   timeText: {fileID: 1601095910}
+  cameraScript: {fileID: 963194229}
+  moveSpeed: 15
+  maxComplexity: 0.5
 --- !u!4 &2099236636
 Transform:
   m_ObjectHideFlags: 0
