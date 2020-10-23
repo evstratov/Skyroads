@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Kirill\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Kirill\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Skyroads.2029865378.00" t="ExcludeRecursive" />
+    <e p="E:\UnityProjects\Skyroads" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Models" t="Include">
+          <e p="Planet" t="Include">
+            <e p="Atmosphere.shader" t="Include" />
+            <e p="Planet.shader" t="Include" />
+            <e p="PlanetLow.shader" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Asteroid.cs" t="Include" />
+          <e p="FloorElement.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="SmoothFollow.cs" t="Include" />
+          <e p="Spaceship.cs" t="Include" />
+          <e p="Spawner.cs" t="Include" />
+        </e>
+        <e p="Shaders" t="Include">
+          <e p="Floor shader.shader" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Skyroads.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

@@ -19,10 +19,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text timeText;
 
     [SerializeField] private SmoothFollow cameraScript;
+    [SerializeField] private int moveSpeed;
+    private int _speedMultiplier = 1;
 
-    public int moveSpeed;
+    private float _spaceShipLength;
+    
     private int _addScore = 1;
-    private int _complScoreInc;
+    private int _scoreTimeDec;
 
     private int _score = 0;
     private int _time = 0;
@@ -32,28 +35,30 @@ public class GameManager : MonoBehaviour
 
     private float startDistance;
     private float startHeight;
-
-    [Range(0f, 1f)] 
-    [SerializeField] private float maxComplexity;
-    [NonSerialized]public float gameComplexity = 1;
+    
+    // время спавна астероидов
+    [Range(1, 5)] 
+    [SerializeField]public float asteroidTimeSpawn = 3;
     // через какое количество очков увеличиваем сложность
     private const int IncComplexityScore = 20;
+    private float _minSpawnTime;
 
     void Start()
     {
         PrintInGameTexts();
+        _spaceShipLength = GameObject.FindWithTag("Spaceship").GetComponentInChildren<MeshFilter>().sharedMesh.bounds.size.z;
+        _minSpawnTime = (2 * _spaceShipLength) / GetSpeed;
         Time.timeScale = 0;
     }
-
+    
     void Update()
     {
         StartGame();
-
-
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _addScore = 2;
-            moveSpeed *= 2;
+            _speedMultiplier = 2;
 
             startDistance = cameraScript.distance;
             startHeight = cameraScript.height;
@@ -63,15 +68,16 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             _addScore = 1;
-            moveSpeed /= 2;
+            _speedMultiplier = 1;
             
             StartCoroutine(SpeedCameraOff(startDistance, startHeight));
         }
-
-        if (gameComplexity > maxComplexity && _score - _complScoreInc >= IncComplexityScore)
+        
+        // если набрали > 20 очков и если дистанция между астероидами равна не меньше двух корпусов корабля
+        if (asteroidTimeSpawn > _minSpawnTime && _score - _scoreTimeDec >= IncComplexityScore)
         {
-            gameComplexity -= 0.1f;
-            _complScoreInc = _score;
+            asteroidTimeSpawn -= 0.1f;
+            _scoreTimeDec = _score;
         }
     }
 
@@ -120,9 +126,13 @@ public class GameManager : MonoBehaviour
         gameOverPanel.GetComponentsInChildren<Text>()[0].text = $"Score: {_score}";
         gameOverPanel.GetComponentsInChildren<Text>()[1].text = $"Best Score: {PlayerPrefs.GetInt("BestScore")}";
         gameOverPanel.GetComponentsInChildren<Text>()[2].text = $"Session Time: {_time}";
-        gameOverPanel.GetComponentsInChildren<Text>()[3].text = $"Asteroids count: {_asteroids}";
+        gameOverPanel.GetComponentsInChildren<Text>()[3].text = $"Asteroids Count: {_asteroids}";
     }
 
+    public int GetSpeed
+    {
+        get { return moveSpeed * _speedMultiplier; }
+    }
     public void AddAsteroid()
     {
         _asteroids++;

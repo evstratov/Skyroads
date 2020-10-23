@@ -14,7 +14,7 @@ public class FloorElement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        transform.Translate(Vector3.back * _gameManager.moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.back * _gameManager.GetSpeed * Time.deltaTime);
 
         if (transform.position.z + _tileSize < Camera.main.transform.position.z)
         {

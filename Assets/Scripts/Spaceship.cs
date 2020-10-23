@@ -23,7 +23,7 @@ public class Spaceship : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody.velocity = (_moveDirection * _gameManager.moveSpeed);
+        _rigidbody.velocity = (_moveDirection * _gameManager.GetSpeed);
     }
 
     private void Update()

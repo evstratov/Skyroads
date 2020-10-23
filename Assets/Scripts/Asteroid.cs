@@ -27,7 +27,7 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        transform.Translate(Vector3.back * _gameManager.moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.back * _gameManager.GetSpeed * Time.deltaTime);
 
         _rotateAsteroidObj.Rotate(rotationVector);
 

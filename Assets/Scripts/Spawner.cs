@@ -6,20 +6,17 @@ using UnityEngine.Analytics;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
-
-    // количество астероидов на одну плитку при старте
-    private float _asteroidCount = 2f;
-    private float _asteroidTimeSpawn;
-    private float _floorTileHeigh;
+    
+    private float _floorTileHeight;
     private float _floorTileWidth;
     private float _asteroidTileSize;
+    private float _betweenAsteroidDistrance;
 
     private float _viewDistance;
     
     private GameObject _floorObject;
     private GameObject _lastFloorElement;
     private GameObject _asteroidObject;
-    private GameObject _lastAsteroidElement;
 
     private void Start()
     {
@@ -28,14 +25,13 @@ public class Spawner : MonoBehaviour
         _floorObject = (GameObject) Resources.Load($"Prefabs\\FloorElement");
         _asteroidObject = (GameObject)Resources.Load($"Prefabs\\Asteroid");
 
-        _floorTileHeigh = _floorObject.GetComponent<MeshFilter>().sharedMesh.bounds.size.z;
+        _floorTileHeight = _floorObject.GetComponent<MeshFilter>().sharedMesh.bounds.size.z;
         _floorTileWidth = _floorObject.GetComponent<MeshFilter>().sharedMesh.bounds.size.x;
         _asteroidTileSize = _asteroidObject.GetComponentInChildren<MeshFilter>().sharedMesh.bounds.size.z;
 
         GameManager.OnGameOver += GameOver;
 
-        // чуть чаще первоначальной генерации
-        _asteroidTimeSpawn = 0.3f * _asteroidCount;
+        _betweenAsteroidDistrance = gameManager.GetSpeed * gameManager.asteroidTimeSpawn * (gameManager.GetSpeed / _floorTileHeight);
 
         FirstFloorGeneration();
         FirstSpawnAsteroids();
@@ -57,10 +53,10 @@ public class Spawner : MonoBehaviour
     {
         // одну плитку позади ракеты
         int i = -1;
-        while (i <= Mathf.RoundToInt(_viewDistance / _floorTileHeigh))
+        while (i <= Mathf.RoundToInt(_viewDistance / _floorTileHeight))
         {
             _lastFloorElement = Instantiate(_floorObject, 
-                new Vector3(0, 0, i * _floorTileHeigh),
+                new Vector3(0, 0, i * _floorTileHeight),
                 Quaternion.Euler(0, 0, 0));
             i++;
         }
@@ -69,21 +65,21 @@ public class Spawner : MonoBehaviour
     private void SpawnFloor()
     {
         // вставляем новую плитку, если последняя сдвинулась на размер
-        if (_viewDistance - _lastFloorElement.transform.position.z >= _floorTileHeigh)
+        if (_viewDistance - _lastFloorElement.transform.position.z >= _floorTileHeight)
         {
             _lastFloorElement = Instantiate(_floorObject,
-                new Vector3(0, 0, _lastFloorElement.transform.position.z + _floorTileHeigh), 
+                new Vector3(0, 0, _lastFloorElement.transform.position.z + _floorTileHeight), 
                 Quaternion.Euler(0, 0, 0));
         }
     }
     private void FirstSpawnAsteroids()
     {
         int i = 1;
-        float range = _floorTileWidth / 2 - _asteroidTileSize / _asteroidCount;
-        while (i <= Mathf.RoundToInt(_viewDistance / _floorTileHeigh / 2))
+        float range = _floorTileWidth / 2 - _asteroidTileSize / 2;
+        while (i <= Mathf.RoundToInt(_viewDistance / _betweenAsteroidDistrance))
         {
-            _lastAsteroidElement = Instantiate(_asteroidObject,
-                new Vector3(Random.Range(-range, range), 1, (_floorTileHeigh * i * _asteroidCount) + _asteroidTileSize),
+            Instantiate(_asteroidObject,
+                new Vector3(Random.Range(-range, range), 1, (i * _betweenAsteroidDistrance) + _asteroidTileSize),
                 Quaternion.Euler(0, 0, 0));
             i++;
         }
@@ -93,10 +89,10 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(_asteroidTimeSpawn * gameManager.gameComplexity);
+            yield return new WaitForSeconds(gameManager.asteroidTimeSpawn);
 
             float range = _floorTileWidth / 2 - _asteroidTileSize / 2;
-            _lastAsteroidElement = Instantiate(_asteroidObject,
+            Instantiate(_asteroidObject,
                 new Vector3(Random.Range(-range, range), 1, _viewDistance + _asteroidTileSize),
                 Quaternion.Euler(0, 0, 0));
         }
