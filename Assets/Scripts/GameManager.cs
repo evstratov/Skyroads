@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private float startHeight;
     
     // время спавна астероидов
-    [Range(1, 5)] 
+    [Range(0.5f, 2f)] 
     [SerializeField]public float asteroidTimeSpawn = 3;
     // через какое количество очков увеличиваем сложность
     private const int IncComplexityScore = 20;
@@ -119,14 +119,14 @@ public class GameManager : MonoBehaviour
 
         if (_score > PlayerPrefs.GetInt("BestScore"))
         {
-            gameOverPanel.GetComponentsInChildren<Text>()[4].text = $"New record! {_score}";
+            gameOverPanel.GetComponentsInChildren<Text>()[5].text = $"New record! {_score}";
             PlayerPrefs.SetInt("BestScore", _score);
         }
 
-        gameOverPanel.GetComponentsInChildren<Text>()[0].text = $"Score: {_score}";
-        gameOverPanel.GetComponentsInChildren<Text>()[1].text = $"Best Score: {PlayerPrefs.GetInt("BestScore")}";
-        gameOverPanel.GetComponentsInChildren<Text>()[2].text = $"Session Time: {_time}";
-        gameOverPanel.GetComponentsInChildren<Text>()[3].text = $"Asteroids Count: {_asteroids}";
+        gameOverPanel.GetComponentsInChildren<Text>()[1].text = $"Score: {_score}";
+        gameOverPanel.GetComponentsInChildren<Text>()[2].text = $"Best Score: {PlayerPrefs.GetInt("BestScore")}";
+        gameOverPanel.GetComponentsInChildren<Text>()[3].text = $"Session Time: {_time}";
+        gameOverPanel.GetComponentsInChildren<Text>()[4].text = $"Asteroids Count: {_asteroids}";
     }
 
     public int GetSpeed

@@ -75,11 +75,11 @@ public class Spawner : MonoBehaviour
     private void FirstSpawnAsteroids()
     {
         int i = 1;
-        float range = _floorTileWidth / 2 - _asteroidTileSize / 2;
+        float range = _floorTileWidth / 2 - _asteroidTileSize / 3;
         while (i <= Mathf.RoundToInt(_viewDistance / _betweenAsteroidDistrance))
         {
             Instantiate(_asteroidObject,
-                new Vector3(Random.Range(-range, range), 1, (i * _betweenAsteroidDistrance) + _asteroidTileSize),
+                new Vector3(Random.Range(-range, range), 2, (i * _betweenAsteroidDistrance) + _asteroidTileSize),
                 Quaternion.Euler(0, 0, 0));
             i++;
         }
@@ -91,9 +91,9 @@ public class Spawner : MonoBehaviour
         {
             yield return new WaitForSeconds(gameManager.asteroidTimeSpawn);
 
-            float range = _floorTileWidth / 2 - _asteroidTileSize / 2;
+            float range = _floorTileWidth / 2 - _asteroidTileSize / 3;
             Instantiate(_asteroidObject,
-                new Vector3(Random.Range(-range, range), 1, _viewDistance + _asteroidTileSize),
+                new Vector3(Random.Range(-range, range), 2, _viewDistance + _asteroidTileSize),
                 Quaternion.Euler(0, 0, 0));
         }
     }
